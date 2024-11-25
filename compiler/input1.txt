@@ -1,0 +1,10 @@
+Program a;
+
+var
+  a, b, c: integer;
+
+begin
+  a := 10;
+  b := 15;
+  writeln(a + b);
+end.

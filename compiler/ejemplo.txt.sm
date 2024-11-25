@@ -1,0 +1,43 @@
+start: skip
+enter 2
+alloc 2
+mark
+pusha Lmain
+call
+halt
+Lfu: skip
+enter 1
+alloc 0
+push  5
+storer -3
+return 3
+Lmain: skip
+enter 4
+alloc 0
+push  5
+push  10
+lt
+jmpz L0
+push  1
+goto L1
+L0: skip
+push  0
+L1: skip
+store 1
+load 1
+print
+push  1
+store 2
+load 2
+alloc 1
+mark
+pusha Lfu
+call
+mul
+alloc 1
+mark
+pusha Lfu
+call
+mul
+print
+return 3

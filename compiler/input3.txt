@@ -1,0 +1,22 @@
+Program FactorialProgram;
+
+var
+  a, b: integer;
+
+function factorial(x: integer): integer;
+begin
+  if 1 < x then
+  begin
+    factorial := x * factorial(x - 1)
+  end
+  else
+  begin
+    factorial := 1;
+  end;
+end;
+
+begin
+  a := 5;
+  b := factorial(a);
+  writeln(b);
+end.

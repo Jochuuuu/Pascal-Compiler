@@ -1,0 +1,17 @@
+Program pe;
+
+var
+  test: integer;
+  contador: integer;
+
+function fu(): integer;
+begin
+  fu:=5;
+end;
+
+begin
+  test := ifexp(5<10,1,0);
+  writeln(test);
+  contador := 1;
+  writeln(contador*fu()*fu());
+end.

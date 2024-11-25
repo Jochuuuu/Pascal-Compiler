@@ -1,0 +1,19 @@
+Program a;
+
+var
+  a, b, c: integer;
+
+function suma(x: integer): integer;
+var
+  y: integer;
+begin
+  y := x + 1;
+  suma := y;
+end;
+
+begin
+  a := 5;
+  b := suma(a);
+  c := suma(b);
+  writeln(b);
+end.
