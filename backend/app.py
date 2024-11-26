@@ -8,8 +8,9 @@ app = Flask(__name__)
 CORS(app)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-COMPILER_FOLDER = os.path.join(BASE_DIR, '../compiler') 
-INPUT_FILE = os.path.join(COMPILER_FOLDER, 'input.txt')  
+COMPILER_FOLDER = os.path.join(BASE_DIR, '../compiler')
+INPUT_FILE = os.path.join(COMPILER_FOLDER, 'input.txt')
+SM_FILE = os.path.join(COMPILER_FOLDER, 'input.txt.sm') 
 
 executor = ThreadPoolExecutor()
 
@@ -18,7 +19,7 @@ COMPILE_COMMAND = (
     "imp_type_checker.cpp scanner.cpp token.cpp visitor.cpp main.cpp "
     "imp_type.cpp imp_interpreter.cpp imp_value.cpp imp_value_visitor.hh"
 )
-EXECUTE_COMMAND = "out input.txt"  
+EXECUTE_COMMAND = "out input.txt"
 
 
 def compile_and_execute(pascal_code):
@@ -29,18 +30,21 @@ def compile_and_execute(pascal_code):
         compile_result = subprocess.run(
             COMPILE_COMMAND, shell=True, capture_output=True, cwd=COMPILER_FOLDER, text=True
         )
-
         if compile_result.returncode != 0:
             return {"error": compile_result.stderr}
 
         execute_result = subprocess.run(
             EXECUTE_COMMAND, shell=True, capture_output=True, cwd=COMPILER_FOLDER, text=True
         )
-
         if execute_result.returncode != 0:
             return {"error": execute_result.stderr}
 
-        return {"output": execute_result.stdout}
+        sm_output = ""
+        if os.path.exists(SM_FILE):
+            with open(SM_FILE, 'r') as sm_file:
+                sm_output = sm_file.read()
+
+        return {"output": execute_result.stdout, "sm_output": sm_output}
 
     except Exception as e:
         return {"error": str(e)}
@@ -56,7 +60,7 @@ def compile_pascal():
             return jsonify({"error": "El código Pascal está vacío"}), 400
 
         future = executor.submit(compile_and_execute, pascal_code)
-        result = future.result()  
+        result = future.result()
 
         if "error" in result:
             return jsonify(result), 500

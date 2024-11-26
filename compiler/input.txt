@@ -1,22 +1,10 @@
-Program Example;
+Program a;
 
-var 
-  a, b: integer;
+var
+  a, b, c: integer;
 
 begin
   a := 10;
-  
-  while 0 < a do
-  begin
-    writeln(a);
-    a := a - 1;
-  end;
-  
-  a := 0;
-  while a <= 9 do
-  begin
-    a := a + 2;
-    writeln(a);
-  end;
-
+  b := 15;
+  writeln(a + b);
 end.
