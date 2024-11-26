@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream> 
 
 #include "svm.hh"
 
@@ -149,14 +150,52 @@ bool SVM::ejecutar(Instruction* instr) {
   return true;
 }
 
+#include <fstream> // Para manejar archivos
+
 void SVM::imprimir_pila() {
-  int i = 0;
-  cout << "pila [ ";
-  while(i <= sp) {
-    cout << pila[i++] << " ";  
-  }
-  cout << "]" << endl;  
+    std::ofstream pilaFile("pila_output.txt", std::ios::out);
+
+    if (!pilaFile.is_open()) {
+        std::cerr << "Error: No se pudo abrir el archivo para escribir la pila." << std::endl;
+        return;
+    }
+
+    pilaFile << "Leyendo programa del archivo input.txt.sm\n";
+    pilaFile << "Programa:\n";
+
+    for (int i = 0; i < instrucciones.size(); i++) {
+        Instruction* instr = instrucciones[i];
+        if (!instr->etiqueta.empty()) {
+            pilaFile << instr->etiqueta << ": ";
+        }
+        pilaFile << nombresInstrucciones[instr->tipo] << " ";
+        if (instr->tieneArg) {
+            if (instr->etiquetaSalto.empty()) {
+                pilaFile << instr->argEntero;
+            } else {
+                pilaFile << instr->etiquetaSalto;
+            }
+        }
+        pilaFile << "\n";
+    }
+
+    pilaFile << "----------------\n";
+
+    pilaFile << "Ejecutando ....\n";
+
+    if (!pila_vacia()) {
+        pilaFile << pila_top() << "\n";
+    } else {
+        pilaFile << "Pila vacía\n";
+    }
+
+    pilaFile << "Terminado\n";
+
+    pilaFile.close();
+
+    std::cout << "Pila escrita en pila_output.txt" << std::endl;
 }
+
 
 void SVM::imprimir() {
   for(int i= 0; i < instrucciones.size(); i++) {
