@@ -9,9 +9,10 @@ begin
 end;
 
 begin
-  for a := 7 to 20 do
+  for a := 7 to 9 do
    begin
-   writeln(a *10);
+   writeln(a);
    end;
-   
+   writeln(a);
+   fac(a);
 end.
