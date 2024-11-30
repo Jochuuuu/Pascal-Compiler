@@ -19,7 +19,30 @@ Backend:
 
 Flask: Un micro-framework de Python para manejar las peticiones HTTP, gestionar la compilación del código y la ejecución de los programas Pascal.
 Subprocess: Para ejecutar los comandos de compilación y ejecución en el servidor, que llaman al compilador de C++ para transformar el código Pascal en código ejecutable.
-Lenguaje de Programación:
 
+## Guia:
+
+Para deployar el backend ejecutar :  
+cd backend
+python app.py
+Para deployar el frontend ejecutar :  
+cd frontend
+npm install
+npm install next
+npm run dev
+
+Ejecutar codigo :  
+Dirigirse a la carpeta compiler (cd compiler)
+Comando para ejecutar el program y generar  el sm :
+g++ -o out exp.cpp parser.cpp environment.hh imp_codegen.cpp 
+    imp_type_checker.cpp scanner.cpp token.cpp visitor.cpp main.cpp 
+    imp_type.cpp imp_interpreter.cpp imp_value.cpp imp_value_visitor.hh
+
+Comando para ejecutar el sm y obtener la maqina de pila :
+g++ -o svm svm.cpp svm_parser.cpp svm_run.cpp
+
+el resultado de la pila se encuentra en :  compiler/pila_output
+
+Lenguaje de Programación:
 Pascal: El lenguaje objetivo que se compila y ejecuta en el simulador.
 ![Descripción de la imagen](./Screenshot%202024-11-30%20054256.png)
