@@ -5,115 +5,43 @@ mark
 pusha Lmain
 call
 halt
+Lfac: skip
+enter 1
+alloc 0
+loadr -3
+print
+return 4
 Lmain: skip
-enter 6
+enter 3
 alloc 0
 alloc 1
-push  10
+push  7
 store 1
 load 1
 store 1
 L0: skip
-push  4
 load 1
+push  9
 le
 jmpz L1
 load 1
 print
+push  9
 load 1
-push  4
 le
 jmpz L2
 goto L1
 L2: skip
 load 1
 push  1
-sub
+add
 store 1
 goto L0
 L1: skip
-alloc 1
-push  1
-store 1
-load 1
-store 2
-L3: skip
-load 1
-push  2
-le
-jmpz L4
-alloc 1
-push  1
-store 2
-load 2
-store 3
-L6: skip
-load 2
-push  2
-le
-jmpz L7
-alloc 1
-push  2
-store 3
-load 3
-store 4
-L9: skip
-push  1
-load 3
-le
-jmpz L10
-load 1
-load 2
-add
-push  5
-div
-push  3
-le
-jmpz L12
 load 1
 print
-load 2
-print
-load 3
-print
-goto L13
-L12: skip
-L13: skip
-load 3
-push  1
-le
-jmpz L11
-goto L10
-L11: skip
-load 3
-push  1
-sub
-store 3
-goto L9
-L10: skip
-push  2
-load 2
-le
-jmpz L8
-goto L7
-L8: skip
-load 2
-push  1
-add
-store 2
-goto L6
-L7: skip
-push  2
 load 1
-le
-jmpz L5
-goto L4
-L5: skip
-load 1
-push  1
-add
-store 1
-goto L3
-L4: skip
-return 3
+mark
+pusha Lfac
+call
 return 3

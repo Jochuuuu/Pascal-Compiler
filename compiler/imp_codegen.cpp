@@ -158,7 +158,7 @@ void ImpCodeGen::visit(FunDec *fd)
   num_params = m;
   fd->body->accept(this);
 
-  if (fd->rtype == "void")
+  if (fd->rtype == "void" && fd->fname != "main")
   {
     codegen(nolabel, "return", num_params + 3);
   }

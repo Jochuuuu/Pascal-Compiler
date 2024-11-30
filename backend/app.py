@@ -106,6 +106,7 @@ def get_stack_output():
     try:
         future = executor.submit(generate_stack_output)
         result = future.result()
+        print(result)
 
         if "error" in result:
             return jsonify(result), 500
