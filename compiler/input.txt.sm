@@ -21,12 +21,14 @@ load 1
 store 1
 L0: skip
 load 1
-push  9
+push  20
 le
 jmpz L1
 load 1
+push  10
+mul
 print
-push  9
+push  20
 load 1
 le
 jmpz L2
@@ -38,11 +40,5 @@ add
 store 1
 goto L0
 L1: skip
-load 1
-print
-load 1
-mark
-pusha Lfac
-call
 return 3
 return 3
