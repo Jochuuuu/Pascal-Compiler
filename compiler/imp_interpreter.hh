@@ -27,6 +27,7 @@ public:
   void visit(StatementList*);
   void visit(AssignStatement*);
   void visit(PrintStatement*);
+    void visit(CommentStatment*){}
   void visit(IfStatement*);
   void visit(WhileStatement*);
   void visit(ReturnStatement* e);

@@ -150,8 +150,6 @@ bool SVM::ejecutar(Instruction* instr) {
   return true;
 }
 
-#include <fstream> // Para manejar archivos
-
 void SVM::imprimir_pila() {
     std::ofstream pilaFile("pila_output.txt", std::ios::out);
 
@@ -159,42 +157,17 @@ void SVM::imprimir_pila() {
         std::cerr << "Error: No se pudo abrir el archivo para escribir la pila." << std::endl;
         return;
     }
+    
+    int i = 0;
+  pilaFile << "pila [ ";
+  while(i <= sp) {
+    pilaFile << pila[i++] << " ";  
+  }
+  pilaFile << "]" << endl;  
 
-    pilaFile << "Leyendo programa del archivo input.txt.sm\n";
-    pilaFile << "Programa:\n";
-
-    for (int i = 0; i < instrucciones.size(); i++) {
-        Instruction* instr = instrucciones[i];
-        if (!instr->etiqueta.empty()) {
-            pilaFile << instr->etiqueta << ": ";
-        }
-        pilaFile << nombresInstrucciones[instr->tipo] << " ";
-        if (instr->tieneArg) {
-            if (instr->etiquetaSalto.empty()) {
-                pilaFile << instr->argEntero;
-            } else {
-                pilaFile << instr->etiquetaSalto;
-            }
-        }
-        pilaFile << "\n";
+  std::cout << "Pila escrita en pila_output.txt" << std::endl;
     }
 
-    pilaFile << "----------------\n";
-
-    pilaFile << "Ejecutando ....\n";
-
-    if (!pila_vacia()) {
-        pilaFile << pila_top() << "\n";
-    } else {
-        pilaFile << "Pila vacía\n";
-    }
-
-    pilaFile << "Terminado\n";
-
-    pilaFile.close();
-
-    std::cout << "Pila escrita en pila_output.txt" << std::endl;
-}
 
 
 void SVM::imprimir() {
@@ -247,7 +220,7 @@ void SVM::error_svm(string mensaje) {
 }
 
 bool SVM::verificar_memoria(int direccion) {
-  if (direccion > sp) error_svm("Acceso a memoria fuera de la memoria asignada");
+   if (direccion > sp) error_svm("Acceso a memoria fuera de la memoria asignada");
   if (direccion <= 0) {
     cout << "Inválido: " << direccion << endl;
     error_svm("Acceso a memoria: dirección inválida");

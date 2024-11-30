@@ -1,22 +1,21 @@
 Program FactorialProgram;
-
 var
-  a, b: integer;
-
+  a, b: integer; 
 function factorial(x: integer): integer;
 begin
-  if 1 < x then
+  if 1 < x then  
   begin
-    factorial := x * factorial(x - 1)
+    factorial := x * factorial(x - 1);
   end
   else
   begin
-    factorial := 1;
+    factorial := 1;  
   end;
 end;
-
 begin
-  a := 5;
-  b := factorial(a);
-  writeln(b);
+  a := 5;  
+  writeln(a); // g
+  writeln(b); // aaaaaaaaa
+  b := factorial(a); // comentario
+  writeln(b,a,b); // imprime b a b 
 end.

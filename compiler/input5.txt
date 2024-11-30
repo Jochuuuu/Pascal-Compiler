@@ -1,24 +1,20 @@
-Program TripleFactorialNoStrings;
-
+Program AAAAAA;
 var
   i, j, k: integer;
-
 begin
   // Loop descendente original
-  for i := 10 downto 2 do
+  for i := 10 downto 4 do
   begin
     writeln(i);
   end;
-
-  
-  // Triple bucle anidado con una condicional
+  { Triple bucle anidado con una condicional }
   for i := 1 to 2 do
   begin
     for j := 1 to 2 do
     begin
        for k := 2 downto 1 do 
        begin
-        // Imprimir solo cuando se cumpla la condición
+        (*  Imprimir si cumple*)
         if ( (i + j ) / 5 ) <= 3 then
         begin
           writeln( i, j,k);
@@ -26,5 +22,4 @@ begin
        end;
     end;
   end;
-
 end.

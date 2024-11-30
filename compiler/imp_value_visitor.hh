@@ -19,6 +19,8 @@ public:
   virtual void visit(WhileStatement* e) = 0;
   virtual void visit(ReturnStatement* e) = 0;
   virtual void visit(ForStatement* e) = 0;
+  virtual void visit(CommentStatment* e) = 0;
+
   virtual void visit(FCallStatement* e) = 0;
   virtual ImpValue visit(BinaryExp* e) = 0;
   virtual ImpValue visit(BoolExp* e) = 0;

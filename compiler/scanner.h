@@ -6,6 +6,8 @@
 
 class Scanner {
 private:
+    char lastcomentario = 'F';
+    int level = 0;
     std::string input;
     int first, current;
 public:

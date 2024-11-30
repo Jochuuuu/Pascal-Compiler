@@ -28,7 +28,7 @@ public:
     Body* parseBody();
     FunDecList* parseFunDecList();
     FunDec* parseFunDec();
-
+    UsesList* parseUsesList();
 };
 
 #endif // PARSER_H

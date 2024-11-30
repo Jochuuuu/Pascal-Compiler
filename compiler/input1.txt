@@ -3,8 +3,16 @@ Program a;
 var
   a, b, c: integer;
 
+procedure fac(x : integer);
 begin
-  a := 10;
-  b := 15;
-  writeln(a + b);
+     writeln(x);
+end;
+
+begin
+  for a := 7 to 9 do
+   begin
+   writeln(a);
+   end;
+   writeln(a);
+   fac(a);
 end.

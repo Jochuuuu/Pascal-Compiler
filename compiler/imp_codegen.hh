@@ -37,13 +37,14 @@ public:
   void visit(ReturnStatement*);
   void visit(ForStatement*);
   void visit(FCallStatement*);
-
+  void visit(CommentStatment*){ }
   int visit(BinaryExp* e);
   int visit(NumberExp* e);
   int visit(BoolExp* e);
   int visit(IdentifierExp* e);
   int visit(IFExp* e);
   int visit(FCallExp* e);
+  void visit(UsesList* e) {}
 
 private:
   ImpTypeChecker* analysis;
